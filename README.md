@@ -28,7 +28,7 @@ cd ..\..\..\..\..
 Default database configuration is set to InMemory. To use Microsoft SQL server, set the appsettings.json property DatabaseType to Sql and set the appropriate connection string and create the database tables as defined in migration.sql.
 This services implements a REST API to manage contacts. In configuration above swagger console is available at `http://localhost:5050/swagger`.
 
-## TestAssignment.AddressBook.Service
+## TestAssignment.AddressBook.Ui
 
 This service implements user interface accessing data from REST API. In configuration above a client is available at `http://localhost:5060`.
 API endpoint used is the debug one. It can be changed in index.html (tag base, attribute data-api).
