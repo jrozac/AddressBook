@@ -1,0 +1,31 @@
+<!-- loader -->
+<app-loader *ngIf="status.loading && !item" class="text-center"></app-loader>
+
+<!-- no record found -->
+<div *ngIf="!status.loading && !item" class="row">
+  <div class="col col-12">
+    <h1>Contact edit</h1>
+    <div *ngIf="!status.loading && !item" class="alert alert-danger" role="alert">
+      Contact not found.
+    </div>
+  </div>
+</div>
+
+<!-- item -->
+<div *ngIf="item" class="row">
+  <div class="col col-12">
+
+    <h1>{{item.firstName}} {{item.lastName}}</h1>
+
+    <!-- alerts -->
+    <div *ngIf="status.actionSuccess" class="alert alert-success" role="alert">Contact was saved.</div>
+    <div *ngIf="status.actionError" class="alert alert-danger" role="alert">Failed to save contact.</div>
+
+    <!-- edit form -->
+    <app-contact-edit-form [status]="status" [item]="item" [error]="error" (actionCallback)="action()" (clearNotificationsCallback)="clearNotifications($event)"></app-contact-edit-form>
+
+  </div>
+</div>
+
+<!-- error modal -->
+<app-modal-window modalId="contact-edit-modal" [header]="serverErrorTitle" [message]="serverErrorResponse" #modal></app-modal-window>

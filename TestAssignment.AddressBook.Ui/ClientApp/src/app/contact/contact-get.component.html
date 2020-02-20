@@ -1,0 +1,36 @@
+<!-- loader -->
+<app-loader *ngIf="status.loading && !item" class="text-center"></app-loader>
+
+<!-- no record found -->
+<div *ngIf="!status.loading && !item" class="row">
+  <div class="col col-12">
+    <h1>Contact</h1>
+    <div *ngIf="!status.loading && !item" class="alert alert-danger" role="alert">
+      Contact not found.
+    </div>
+  </div>
+</div>
+
+<!-- record -->
+<div *ngIf="item" class="row">
+  <div class="col col-12">
+
+    <h1>{{item.firstName}} {{item.lastName}}</h1>
+
+    <app-contact-data [item]="item"></app-contact-data>
+
+    <div class="btn-toolbar" role="toolbar">
+      <div class="btn-group mr-2" role="group">
+        <a role="button" class="btn btn-primary" [routerLink]="['/contacts/edit', item.id]">Edit</a>
+      </div>
+      <div class="btn-group" role="group">
+        <a role="button" class="btn btn-danger" [routerLink]="['/contacts/delete', item.id]">Delete</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- error modal -->
+<app-modal-window modalId="contact-get-modal" [header]="serverErrorTitle" [message]="serverErrorResponse" #modal></app-modal-window>

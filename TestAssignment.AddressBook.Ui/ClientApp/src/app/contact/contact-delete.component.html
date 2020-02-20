@@ -1,0 +1,43 @@
+<!-- loader -->
+<app-loader *ngIf="status.loading && !item" class="text-center"></app-loader>
+
+<!-- no record found -->
+<div *ngIf="!status.loading && !item" class="row">
+  <div class="col col-12">
+    <h1>Contact</h1>
+    <div *ngIf="!status.loading && !item" class="alert alert-danger" role="alert">
+      Contact not found.
+    </div>
+  </div>
+</div>
+
+<!-- record -->
+<div *ngIf="item" class="row">
+  <div class="col col-12">
+
+    <h1>Delete contact</h1>
+
+    <!-- alerts -->
+    <div *ngIf="status.actionSuccess" class="alert alert-success" role="alert">Contact was deleted.</div>
+    <div *ngIf="status.actionError" class="alert alert-danger" role="alert">Failed to delete contact.</div>
+
+    <!-- data -->
+    <app-contact-data [item]="item"></app-contact-data>
+
+    <!-- delete submit -->
+    <div *ngIf="!status.actionSuccess" class="btn-toolbar" role="toolbar">
+      <div class="btn-group mr-2" role="group" aria-label="Basic example">
+        <button *ngIf="!status.loading" class="btn btn-danger" (click)="confirmDelete()">Confirm delete</button>
+        <button *ngIf="status.loading" class="btn btn-danger" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- error modal -->
+<app-modal-window modalId="contact-edit-modal" [header]="serverErrorTitle" [message]="serverErrorResponse" #modal></app-modal-window>
+
+<!-- confirm modal -->
+<app-modal-window *ngIf="item" modalId="contact-delete-modal-confirm" header="Delete contact {{item.firstName}} {{item.lastName}}" message="Are you sure?" (actionCallback)="action()" actionLabel="Delete" #modalconfirm></app-modal-window>

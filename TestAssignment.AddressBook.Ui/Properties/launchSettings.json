@@ -1,0 +1,13 @@
+﻿{
+  "profiles": {
+    "TestAssignment.AddressBook.Ui": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "launchUrl": "",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:5060"
+    }
+  }
+}

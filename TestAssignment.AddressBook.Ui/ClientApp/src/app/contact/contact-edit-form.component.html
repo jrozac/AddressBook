@@ -1,0 +1,40 @@
+ <form>
+
+  <!-- form fields -->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputFirstName">First Name</label>
+      <input (focus)="clearNotifications('firstName')" type="text" class="form-control" id="inputFirstName" placeholder="First Name" name="firstName" [(ngModel)]="item.firstName" />
+      <small *ngFor="let err of error?.errors['firstName']" class="form-text text-danger">{{err}}</small>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputLastName">Last Name</label>
+      <input (focus)="clearNotifications('lastName')" type="text" class="form-control" id="inputLastName" placeholder="Last Name" name="lastName" [(ngModel)]="item.lastName" />
+      <small *ngFor="let err of error?.errors['lastName']" class="form-text text-danger">{{err}}</small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="inputPhoneNumber">Phone Number</label>
+      <input (focus)="clearNotifications('phoneNumber')" type="text" class="form-control" id="inputPhoneNumber" placeholder="Phone Number" name="phoneNumber" [(ngModel)]="item.phoneNumber" />
+      <small *ngFor="let err of error?.errors['phoneNumber']" class="form-text text-danger">{{err}}</small>
+    </div>
+    <div class="form-group col-md-9">
+      <label for="inputAddress">Address</label>
+      <input (focus)="clearNotifications('address')" type="text" class="form-control" id="inputAddress" placeholder="Address" name="address" [(ngModel)]="item.address" />
+      <small *ngFor="let err of error?.errors['address']" class="form-text text-danger">{{err}}</small>
+    </div>
+  </div>
+
+  <!-- form submit -->
+  <div *ngIf="item" class="btn-toolbar" role="toolbar">
+    <div class="btn-group mr-2" role="group" aria-label="Basic example">
+      <button *ngIf="!status.loading" type="submit" class="btn btn-primary" (click)="action()">Save</button>
+      <button *ngIf="status.loading" class="btn btn-primary" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></button>
+    </div>
+    <div *ngIf="item.id" class="btn-group" role="group">
+      <a role="button" class="btn btn-secondary" [routerLink]="['/contacts/get', item.id]">Cancel</a>
+    </div>
+  </div>
+
+</form>

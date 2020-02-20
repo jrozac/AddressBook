@@ -1,0 +1,13 @@
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    <li *ngIf="prevPage()" class="page-item">
+      <button role="button" class="page-link" (click)="loadPrev()">Previous</button>
+    </li>
+    <li class="page-item disabled">
+      <a class="page-link" href="#"><strong>{{currentPage()}} / {{allPages()}}</strong></a>
+    </li>
+    <li *ngIf="nextPage()" class="page-item">
+      <button role="button" class="page-link" (click)="loadNext()">Next</button>
+    </li>
+  </ul>
+</nav>

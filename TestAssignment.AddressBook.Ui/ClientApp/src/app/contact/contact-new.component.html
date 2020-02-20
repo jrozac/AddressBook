@@ -1,0 +1,31 @@
+<!-- item -->
+<div *ngIf="item" class="row">
+  <div class="col col-12">
+
+    <h1>New contact</h1>
+
+    <!-- alerts -->
+    <div *ngIf="status.actionSuccess" class="alert alert-success" role="alert">New contact was created.</div>
+    <div *ngIf="status.actionError" class="alert alert-danger" role="alert">Failed to create new contact.</div>
+
+    <!-- edit form -->
+    <app-contact-edit-form *ngIf="!item.id" [status]="status" [item]="item" [error]="error" (actionCallback)="action()" (clearNotificationsCallback)="clearNotifications($event)"></app-contact-edit-form>
+
+    <!-- data when created -->
+    <app-contact-data *ngIf="!!item.id" [item]="item"></app-contact-data>
+
+    <!-- buttons when created -->
+    <div *ngIf="!!item.id" class="btn-toolbar" role="toolbar">
+      <div class="btn-group mr-2" role="group">
+        <a role="button" class="btn btn-secondary" [routerLink]="['/contacts/get', item.id]">Show</a>
+      </div>
+      <div class="btn-group" role="group">
+        <a role="button" class="btn btn-danger" [routerLink]="['/contacts/delete', item.id]">Delete</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- error modal -->
+<app-modal-window modalId="contact-create-modal" [header]="serverErrorTitle" [message]="serverErrorResponse" #modal></app-modal-window>
